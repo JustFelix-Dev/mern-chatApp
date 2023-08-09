@@ -34,10 +34,37 @@ const registerUser=async(req,res)=>{
         const token = createToken(user._id);
         res.status(200).json({_id:user._id,name,email,token})
     }catch(err){
+        console.log(err)
         res.status(501).json(err.message)
     }
 
 }
 
+const loginUser =async(req,res)=>{
+        const { email,password } = req.body;
 
-module.exports = { registerUser}
+        try{
+           let user = await userModel.findOne({email})
+           if(!user) return res.status(400).json('Invalid Email or Password!')
+           const isValidPassword = await bcrypt.compare(password,user.password)
+           if(!isValidPassword) return res.status(400).json('Invalid Email or Password!')
+           const token = createToken(user._id);
+           res.status(200).json({_id:user._id,name:user.name,email,token})
+        }catch(err){
+            console.log(err)
+            res.status(501).json(err.message)
+        }
+}
+
+const findUser =async(req,res)=>{
+      const {userId} = req.params;
+      try{
+         const user = await userModel.findById(userId)
+         res.status
+      }catch(err){
+        console.log(err)
+        res.status(501).json(err.message) 
+      }
+}
+
+module.exports = { registerUser,loginUser,findUser}
