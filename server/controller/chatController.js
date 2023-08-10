@@ -29,7 +29,6 @@ const findUserChats = async(req,res)=>{
        const chats = await chatModel.find({
            members: {$in: [userId]}
        })
-
        res.status(201).json(chats)
     }catch(err){
         console.log(err)

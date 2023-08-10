@@ -5,6 +5,8 @@ const { default: mongoose } = require('mongoose');
 require('dotenv').config()
 const userRoutes = require('./routes/userRoute');
 const chatRoutes = require('./routes/chatRoute');
+const messageRoutes = require('./routes/messageRoute');
+
 app.use(express.json());
 app.use(cors());
 
@@ -25,3 +27,4 @@ mongoose.connect(URL,{
 // Routes
 app.use('/api/users',userRoutes)
 app.use('/api/chats',chatRoutes)
+app.use('/api/messages',messageRoutes)
