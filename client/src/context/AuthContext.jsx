@@ -20,11 +20,20 @@ import { baseUrl, postRequest } from '../utils/services';
      },[]);
 
      const registerUser = useCallback(async()=>{
-          await postRequest(`${baseUrl}/user/register`,JSON.stringify(registerInfo))
+        setIsRegisterLoading(true)
+      const response = await postRequest(`${baseUrl}/user/register`,JSON.stringify(registerInfo))
+
+      setIsRegisterLoading(false)
+      if(response.error){
+           return setRegisterError(response)
+      }
+
+      localStorage.setItem('User', JSON.stringify(response))
+      setUser(response) 
      },[])
 
     return(
-            <AuthContext.Provider value={{user,registerInfo,updateRegisterInfo}}>
+            <AuthContext.Provider value={{user,registerInfo,updateRegisterInfo,registerUser,registerError,isRegisterLoading}}>
             {children}
             </AuthContext.Provider>
     )
