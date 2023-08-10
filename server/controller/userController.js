@@ -37,7 +37,6 @@ const registerUser=async(req,res)=>{
         console.log(err)
         res.status(501).json(err.message)
     }
-
 }
 
 const loginUser =async(req,res)=>{

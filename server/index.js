@@ -22,4 +22,4 @@ mongoose.connect(URL,{
 })
 
 // Routes
-app.use('/api/user',userRoutes)
+app.use('/api/users',userRoutes)
