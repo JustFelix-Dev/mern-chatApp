@@ -3,7 +3,8 @@ const app = express();
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 require('dotenv').config()
-const userRoutes = require('./routes/userRoute')
+const userRoutes = require('./routes/userRoute');
+const chatRoutes = require('./routes/chatRoute');
 app.use(express.json());
 app.use(cors());
 
@@ -23,3 +24,4 @@ mongoose.connect(URL,{
 
 // Routes
 app.use('/api/users',userRoutes)
+app.use('/api/chats',chatRoutes)
