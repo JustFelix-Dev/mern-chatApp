@@ -22,10 +22,8 @@ import { baseUrl, postRequest } from '../utils/services';
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem("User"));
         setUser(user);
-        console.log(user)
     },[])
 
-    console.log("LoginInfo:", loginInfo);
 
      const updateRegisterInfo = useCallback((info)=>{
           setRegisterInfo(info);
